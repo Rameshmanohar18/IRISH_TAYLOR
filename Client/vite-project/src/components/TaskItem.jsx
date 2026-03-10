@@ -10,4 +10,4 @@ export default function TaskItem({ task, toggleComplete, deleteTask }) {
       <button onClick={() => deleteTask(task._id)}>Delete</button>
     </div>
   )
-}
+} 

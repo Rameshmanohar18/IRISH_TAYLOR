@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
-import Signup from "./pages/Signup"
-import Login from "./pages/Login"
-import Dashboard from "./pages/Dashboard"
-import { isLoggedIn } from "./Utils/auth.js"
+import Signup from "./pages/Signup.jsx"
+import Login from "./pages/Login.jsx"
+import Dashboard from "./pages/Dashboard.jsx"
+import { isLoggedIn } from "./Utils/auth.jsx"
 
 function App() {
   return (

@@ -1,11 +1,10 @@
-
 import { useEffect, useState } from "react"
 import API from "../services/api"
 import TaskItem from "../components/TaskItem"
-import { removeToken } from "../Utils/auth"
+import { removeToken } from "../Utils/auth.jsx"
 import { saveTasksOffline, getTasksOffline } from "../services/storage"
 import Switch from "react-switch"
-import { useTheme } from "../utils/theme"
+import { useTheme } from "../Utils/theme.jsx"
 import Calendar from "react-calendar"
 import 'react-calendar/dist/Calendar.css'
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition"
@@ -16,7 +15,7 @@ export default function Dashboard() {
   const [title, setTitle] = useState("")
   const [dueDate, setDueDate] = useState(null)
   const [error, setError] = useState("")
-  const { darkMode, setDarkMode } = useTheme()
+  const {darkMode, setDarkMode } = useTheme()
   const navigate = useNavigate()
 
   const { transcript, resetTranscript, listening } = useSpeechRecognition()
