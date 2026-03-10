@@ -1,40 +1,70 @@
+// import { useState } from "react"
+// import API from "../services/api"
+
+// export default function Login() {
+
+//   const [email,setEmail] = useState("")
+//   const [password,setPassword] = useState("")
+
+//   const login = async () => {
+
+//     const res = await API.post("/auth/login", {
+//       email,
+//       password
+//     })
+
+//     localStorage.setItem("token", res.data.token)
+//     window.location="/dashboard"
+//   }
+
+//   return (
+//     <div>
+
+//       <h2>Login</h2>
+
+//       <input
+//         placeholder="email"
+//         onChange={(e)=>setEmail(e.target.value)}
+//       />
+
+//       <input
+//         type="password"
+//         placeholder="password"
+//         onChange={(e)=>setPassword(e.target.value)}
+//       />
+
+//       <button onClick={login}>Login</button>
+
+//     </div>
+//   )
+// }
+
 import { useState } from "react"
 import API from "../services/api"
+import { saveToken } from "../utils/auth"
 
-export default function Login() {
+export default function Login({ navigate }) {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
 
-  const [email,setEmail] = useState("")
-  const [password,setPassword] = useState("")
-
-  const login = async () => {
-
-    const res = await API.post("/auth/login", {
-      email,
-      password
-    })
-
-    localStorage.setItem("token", res.data.token)
-    window.location="/dashboard"
+  const handleLogin = async () => {
+    try {
+      const res = await API.post("/auth/login", { email, password })
+      saveToken(res.data.token)
+      navigate("/dashboard")
+    } catch (err) {
+      setError(err.response?.data?.message || "Login failed")
+    }
   }
 
   return (
     <div>
-
       <h2>Login</h2>
-
-      <input
-        placeholder="email"
-        onChange={(e)=>setEmail(e.target.value)}
-      />
-
-      <input
-        type="password"
-        placeholder="password"
-        onChange={(e)=>setPassword(e.target.value)}
-      />
-
-      <button onClick={login}>Login</button>
-
+      <input type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="Email" />
+      <input type="password" value={password} onChange={e=>setPassword(e.target.value)} placeholder="Password" />
+      <button onClick={handleLogin}>Login</button>
+      {error && <p style={{color:'red'}}>{error}</p>}
     </div>
   )
 }
