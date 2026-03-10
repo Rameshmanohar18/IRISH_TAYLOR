@@ -92,7 +92,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div style={{
+    <div  style={{
       background: darkMode ? "#1e1e1e" : "#fff",
       color: darkMode ? "#fff" : "#000",
       minHeight: "100vh",

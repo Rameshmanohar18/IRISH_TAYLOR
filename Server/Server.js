@@ -15,6 +15,11 @@ console.log(process.env.MONGO_URI)
 app.use("/api/auth", authRoutes)
 app.use("/api/tasks", taskRoutes)
 
+
+app.get("/", (req,res)=>{
+  res.send("Server working")
+})
+
 app.listen(5000, () =>
   console.log("Server running on 5000")
 )
