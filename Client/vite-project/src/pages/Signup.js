@@ -1,12 +1,12 @@
 import { useState } from "react"
 import API from "../services/api"
-import { saveToken } from "../utils/auth"
+import { saveToken } from "../Utils/auth"
 
 export default function Signup({ navigate }) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
-
+                               
   const handleSignup = async () => {
     try {
       const res = await API.post("/auth/signup", { email, password })

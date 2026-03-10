@@ -30,7 +30,9 @@ export default function Dashboard({ navigate }) {
     }
   }
 
-  useEffect(()=>{ fetchTasks() }, [])
+  useEffect(()=>{
+     fetchTasks() 
+    }, [])
 
   const createTask = async () => {
     if(!title.trim()) return
@@ -68,38 +70,49 @@ export default function Dashboard({ navigate }) {
     resetTranscript()
   }
 
+
+
+
   return (
-    <div 
+  <div style={{ 
+    background: darkMode ? "#1e1e1e" : "#fff",
+    color: darkMode ? "#fff" : "#000",
+    minHeight: "100vh",
+    padding: "20px"
+  }}>
+    <h2>Dashboard</h2>
+    <button onClick={handleLogout}>Logout</button>
     
-    
-    
-    // style={{ background: darkMode ? "#1e1e1e" : "#fff", color: darkMode ? "#fff" : "#000", minHeight: "100vh", padding: "20px" }}
-    
-    
-    
-    >
-      <h2>Dashboard</h2>
-      <button onClick={handleLogout}>Logout</button>
-      <div style={{marginTop:"10px"}}>
-        Dark Mode: <Switch checked={darkMode} onChange={()=>setDarkMode(!darkMode)} />
-      </div>
-
-      <div style={{marginTop:"20px"}}>
-        <input value={title} onChange={e=>setTitle(e.target.value)} placeholder="New task"/>
-        <Calendar value={dueDate} onChange={setDueDate} />
-        <button onClick={createTask}>Add</button>
-        <button onClick={startVoiceInput}>🎤 Voice Input</button>
-        <button onClick={applyVoiceInput}>Apply Voice</button>
-        {listening && <span>Listening...</span>}
-      </div>
-
-      {error && <p style={{color:'red'}}>{error}</p>}
-
-      <div style={{marginTop:"20px"}}>
-        {tasks.map(task => (
-          <TaskItem key={task._id || task.id} task={task} toggleComplete={toggleComplete} deleteTask={deleteTask} />
-        ))}
-      </div>
+    {/* Dark mode toggle */}
+    <div>
+      Dark Mode: <Switch checked={darkMode} onChange={()=>setDarkMode(!darkMode)} />
     </div>
-  )
+
+    {/* Task input */}
+    <div>
+      <input value={title} onChange={e=>setTitle(e.target.value)} placeholder="New task" />
+      <button onClick={createTask}>Add</button>
+    </div>
+
+    {/* Task list */}
+    <div>
+      {tasks.map(task => (
+        <TaskItem
+          key={task._id || task.id}
+          task={task}
+          toggleComplete={toggleComplete}
+          deleteTask={deleteTask}
+        />
+      ))}
+    </div>
+  </div>
+)
+
+
+
+
+
+
+
+
 }
