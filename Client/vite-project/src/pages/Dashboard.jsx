@@ -4,7 +4,7 @@ import TaskItem from "../components/TaskItem"
 import { removeToken } from "../Utils/auth.jsx"
 import { saveTasksOffline, getTasksOffline } from "../services/storage"
 import Switch from "react-switch"
-import { useTheme } from "../Utils/theme.jsx"
+// import { useTheme } from "../Utils/theme.jsx"
 import Calendar from "react-calendar"
 import 'react-calendar/dist/Calendar.css'
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition"
@@ -15,7 +15,7 @@ export default function Dashboard() {
   const [title, setTitle] = useState("")
   const [dueDate, setDueDate] = useState(null)
   const [error, setError] = useState("")
-  const {darkMode, setDarkMode } = useTheme()
+  // const {darkMode, setDarkMode } = useTheme()
   const navigate = useNavigate()
 
   const { transcript, resetTranscript, listening } = useSpeechRecognition()
@@ -92,8 +92,8 @@ export default function Dashboard() {
 
   return (
     <div  style={{
-      background: darkMode ? "#1e1e1e" : "#fff",
-      color: darkMode ? "#fff" : "#000",
+      // background: darkMode ? "#1e1e1e" : "#fff",
+      // color: darkMode ? "#fff" : "#000",
       minHeight: "100vh",
       padding: "20px"
     }}>
@@ -101,9 +101,9 @@ export default function Dashboard() {
       <button onClick={handleLogout}>Logout</button>
 
       {/* Dark mode toggle */}
-      <div style={{ margin: "10px 0" }}>
+      {/* <div style={{ margin: "10px 0" }}>
         Dark Mode: <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
-      </div>
+      </div> */}
 
       {/* Task input */}
       <div style={{ marginBottom: "15px" }}>

@@ -11,7 +11,14 @@ function App() {
         <Route path="/" element={isLoggedIn() ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
         <Route path="/login" element={<Login navigate={(path)=>window.location.href=path} />} />
         <Route path="/signup" element={<Signup navigate={(path)=>window.location.href=path} />} />
-        <Route path="/dashboard" element={isLoggedIn() ? <Dashboard navigate={(path)=>window.location.href=path} /> : <Navigate to="/login" />} />
+
+
+        {/* <Route path="/dashboard" element={isLoggedIn() ? <Dashboard navigate={(path)=>window.location.href=path} /> : <Navigate to="/login" />} /> */}
+
+        <Route path="/dashboard" element={<Dashboard navigate={(path)=>window.location.href=path} />} />
+
+
+
       </Routes>
     </Router>
   )
